@@ -1,0 +1,68 @@
+<div class="col-12 mt-3" *ngIf="airplane">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Detalhes avião</h4>
+            <div>
+                <div class="form-group">
+                    <label for="">Tipo avião</label>
+                    {{airplane.airplaneTypeDescription}}
+                </div>
+                <div class="form-group">
+                    <label for="">Quantidade motores</label>
+                    {{airplane.motorQuantity}}
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <h5>Motores</h5>
+                    </div>
+                </div>
+
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">tipo motor</th>
+                                <th scope="col">status</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of airplane.motors">
+                                <th>{{item.id}}</th>
+                                <td>{{item.motorTypeDescription}}</td>
+                                <td>
+                                    <span *ngIf="item.running==true">ligado</span>
+                                    <span *ngIf="item.running==false">desligado</span>
+                                </td>
+                                <td>
+                                    <button *ngIf="item.running == false" (click)="runMotor(item.id)" type="button"
+                                        class="btn btn-light" title="iniciar motor">
+                                        <i class="far fa-play-circle"></i>
+                                    </button>
+                                    <button *ngIf="item.running == true" (click)="stopMotor(item.id)" type="button"
+                                        class="btn btn-light" title="parar motor">
+                                        <i class="far fa-stop-circle"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="row mt-3">
+                    <div class="col-12 text-right">
+                        <div class="form-group">
+                            <button type="button" [routerLink]="['']" class="btn btn-light">voltar</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>

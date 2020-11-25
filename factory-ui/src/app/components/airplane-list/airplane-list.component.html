@@ -1,0 +1,46 @@
+<div class="col-12">
+    <div class="text-left">
+        <h1>
+            Avioes
+        </h1>
+    </div>
+</div>
+<div class="col-12">
+    <div class="text-right">
+        <div class="form-group">
+            <button [routerLink]="['new-airplane']" class="btn btn-primary">novo avião</button>
+        </div>
+    </div>
+</div>
+
+<div class="col-12">
+
+    <div class="card p-3">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">tipo avião</th>
+                    <th scope="col">quantidade motores</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of airplanes">
+                    <th>{{item.id}}</th>
+                    <th>{{item.airplaneTypeDescription}}</th>
+                    <th>{{item.motorQuantity}}</th>
+                    <th class="text-right">
+                        <button [routerLink]="['airplane-detail',item.id]" type="button" class="btn btn-light"
+                            title="detalhes">
+                            <i class="far fa-eye"></i>
+                        </button>
+                        <button (click)="delete(item.id)" type="button" class="btn btn-light ml-1" title="deletar">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

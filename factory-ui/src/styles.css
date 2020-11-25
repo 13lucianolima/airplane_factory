@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+
+.form-control.ng-invalid.ng-touched {
+    border: 0.5px solid red;
+}
+
+.error {
+    background-color: #ff00006b;
+    border: none;
+}

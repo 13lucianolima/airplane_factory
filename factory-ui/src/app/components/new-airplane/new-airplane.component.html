@@ -1,0 +1,60 @@
+<div class="col-12 mt-3">
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Novo avião</h4>
+            <div class="card p-2 error" *ngIf="errors?.length > 0">
+                <div *ngFor="let error of errors">
+                    <span>{{error}}</span>
+                </div>
+            </div>
+            <form [formGroup]="form" (submit)="save()">
+                <div class="form-group">
+                    <label for="">Tipo avião</label>
+                    <select [formControlName]="'airplaneType'" class="form-control col-6">
+                        <option [ngValue]="item.value" *ngFor="let item of airplaneTypes">
+                            {{item.label}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">Quantidade motores</label>
+                    <input [formControlName]="'motorQuantity'" type="number" class="form-control col-6" />
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <h5>Motores</h5>
+                    </div>
+                    <div class="col-6 text-right">
+                        <button type="button" (click)="newMotor()" class="btn btn-primary btn-sm">adicionar
+                            motor</button>
+                    </div>
+                </div>
+
+                <div [formArrayName]="'motors'">
+                    <div *ngFor="let item of motors.controls, let i = index" [formGroupName]="i">
+                        <label for="">Tipo motor</label>
+                        <select [formControlName]="'motorType'" class="form-control col-6">
+                            <option [ngValue]="item.value" *ngFor="let item of motorTypes">
+                                {{item.label}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="row mt-3">
+                    <div class="col-12 text-right">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+
+    </div>
+</div>
