@@ -14,7 +14,7 @@ namespace AirplaneFactory.Api.Controllers.V1
             }
             else
             {
-                return Ok(new { success = false, result.ValidationResult.Errors });
+                return BadRequest(new { success = false, result.ValidationResult.Errors });
             }
         }
     }

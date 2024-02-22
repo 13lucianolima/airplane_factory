@@ -5,6 +5,8 @@ import { ISelectModel } from './../../core/models/select.model';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Result } from 'src/app/core/models/result';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-new-airplane',
@@ -75,12 +77,10 @@ export class NewAirplaneComponent implements OnInit {
     if (this.form.valid) {
       const formValue = this.form.value;
       this.airplaneService.add(formValue).subscribe(response => {
-        if (!response.success) {
-          this.errors = response.errors;
-        } else {
-          this.errors = [];
-          this.router.navigate(['']);
-        }
+        this.errors = [];
+        this.router.navigate(['']);
+      }, (response: HttpErrorResponse) => {
+        this.errors = response.error?.errors;
       });
     } else {
       this.form.markAllAsTouched();
